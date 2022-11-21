@@ -62,4 +62,25 @@ def get_activities():
     activities = [activity.serialize() for activity in Activity.query.all()]
     return success_response({"activities": activities})
 
+@app.route("/api/places/<int:place_id>/activity/", methods=["POST"])
+def create_activity(place_id):
+    """
+    Endpoint to create an activity to a place
+    """
+    place=Place.query.filter_by(id=place_id).first()
+    body=json.loads(request.data)
+    name=body.get("name")
+    description=body.get("description")
+    if name is None or description is None:
+        return failure_response ("Please fill out all fields.", 400)
+    new_activity=Activity(name=name, description=description, course_id=place_id)
+    if place is None:
+      new_activity=Activity(name=name, description=description)
+    else:
+      new_activity=Activity(name=name, description=description, place_id=place_id)
+    db.session.add(new_activity)
+    db.session.commit()
+    return success_response (new_activity.serialize(), 201)
+
+
 

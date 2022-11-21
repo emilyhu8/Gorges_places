@@ -8,8 +8,8 @@ class Place (db.Model):
   name = db.Column(db.String, nullable = False)
   description = db.Column (db.String, nullable = False)
   activities = db.relationship ("Activity", cascade="delete")
-  ratings = db.relationship ("Review", cascade= "delete")
-  comments = db.relationship ("Review", cascade ="delete")
+  ratings = db.relationship ("PlaceReview", cascade= "delete")
+  comments = db.relationship ("PlaceReview", cascade ="delete")
 
   def __init__ (self, **kwargs):
     """
@@ -47,8 +47,9 @@ class Activity (db.Model):
   name=db.Column(db.String, nullable=False)
   description=db.Column(db.String, nullable=False)
   place_id = db.Column(db.String, db.ForeignKey("place.id"), nullable=True)
-  ratings = db.relationship ("Review", cascade= "delete")
-  comments = db.relationship ("Review", cascade ="delete")
+  completed = db.Column(db.Boolean, nullable =True)
+  ratings = db.relationship ("ActivityReview", cascade= "delete")
+  comments = db.relationship ("ActivityReview", cascade ="delete")
 
   def __init__ (self, **kwargs):
     """
@@ -56,6 +57,7 @@ class Activity (db.Model):
     """
     self.name=kwargs.get("name", "")
     self.description=kwargs.get("description", "")
+    self.completed=kwargs.get("completed", False)
 
   def serialize(self):
     """
@@ -65,6 +67,7 @@ class Activity (db.Model):
       "id": self.id, 
       "name": self.name, 
       "description": self.description, 
+      "complete": self.completed,
       "place": (Place.query.filter_by(id=self.place_id)).simple_serialize(), 
       "review": (Review.query.filter_by (id=self.review_id)).simple_serialize()
     }
@@ -76,21 +79,21 @@ class Activity (db.Model):
     return {
       "id": self.id, 
       "name": self.name, 
-      "description": self.description
+      "description": self.description,
+      "completed": self.completed
     }
 
-class Review(db.Model):
+class PlaceReview(db.Model):
   __tablename__="review"
   id=db.Column(db.Integer, primary_key =True, autoincrement = True)
   username=db.Column(db.String, nullable=False)
   rating = db.Column(db.Integer, nullable=False)
   comment = db.Column(db.String, nullable= True)
   place_id = db.Column(db.String, db.ForeignKey("place.id"), nullable=True)
-  activity_id = db.Column(db.String, db.ForeignKey("activity.id"), nullable=True)
 
   def __init__(self, **kwargs):
     """
-    Creates a Review object
+    Creates a PlaceReview object
     """
     self.username=kwargs.get("username", "")
     self.rating=kwargs.get("rating", "")
@@ -98,7 +101,7 @@ class Review(db.Model):
 
   def serialize(self):
     """
-    Serializes a Review object
+    Serializes a PlaceReview object
     """
     return {
       "id": self.id, 
@@ -111,13 +114,53 @@ class Review(db.Model):
   
   def simple_serialize(self):
     """
-    Simple Serializes a User object
+    Simple Serializes a PlaceReview object
     """
     return {
       "username": self.username, 
       "rating": self.rating, 
       "comment": self.comment
     }
+
+class ActivityReview(db.Model):
+  __tablename__="review"
+  id=db.Column(db.Integer, primary_key =True, autoincrement = True)
+  username=db.Column(db.String, nullable=False)
+  rating = db.Column(db.Integer, nullable=False)
+  comment = db.Column(db.String, nullable= True)
+  activity_id = db.Column(db.String, db.ForeignKey("activity.id"), nullable=True)
+
+  def __init__(self, **kwargs):
+    """
+    Creates a ActivityReview object
+    """
+    self.username=kwargs.get("username", "")
+    self.rating=kwargs.get("rating", "")
+    self.comment=kwargs.get("comment", "")
+
+  def serialize(self):
+    """
+    Serializes a ActivityReview object
+    """
+    return {
+      "id": self.id, 
+      "username": self.username, 
+      "rating": self.rating, 
+      "comment": self.comment, 
+      "place": (Place.query.filter_by_id(id=self.place_id).first()).simple_serialize(), 
+      "activity": (Activity.query.filter_by_id(id=self.activity_id).first()).simple_serialize()
+    }
+  
+  def simple_serialize(self):
+    """
+    Simple Serializes a ActivityReview object
+    """
+    return {
+      "username": self.username, 
+      "rating": self.rating, 
+      "comment": self.comment
+    }
+
 
 
 
