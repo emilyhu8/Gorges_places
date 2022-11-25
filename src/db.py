@@ -69,7 +69,8 @@ class Activity (db.Model):
       "description": self.description, 
       "complete": self.completed,
       "place": (Place.query.filter_by(id=self.place_id)).simple_serialize(), 
-      "review": (Review.query.filter_by (id=self.review_id)).simple_serialize()
+      "ratings": [r.simple_serialize() for r in self.ratings], 
+      "comments": [c.simple_serialize() for c in self.comments] 
     }
   
   def simple_serialize(self):
@@ -109,7 +110,6 @@ class PlaceReview(db.Model):
       "rating": self.rating, 
       "comment": self.comment, 
       "place": (Place.query.filter_by_id(id=self.place_id).first()).simple_serialize(), 
-      "activity": (Activity.query.filter_by_id(id=self.activity_id).first()).simple_serialize()
     }
   
   def simple_serialize(self):
@@ -147,7 +147,6 @@ class ActivityReview(db.Model):
       "username": self.username, 
       "rating": self.rating, 
       "comment": self.comment, 
-      "place": (Place.query.filter_by_id(id=self.place_id).first()).simple_serialize(), 
       "activity": (Activity.query.filter_by_id(id=self.activity_id).first()).simple_serialize()
     }
   
