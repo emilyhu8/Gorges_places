@@ -2,11 +2,24 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+place_association_table= db.Table(
+  "place_association_table",
+  db.Column("category_id", db.Integer, db.ForeignKey("category.id")),
+  db.Column("activity_id", db.Integer, db.ForeignKey("place.id")) 
+)
+
+activity_association_table= db.Table(
+  "activity_association_table",
+  db.Column("category_id", db.Integer, db.ForeignKey("category.id")),
+  db.Column("activity_id", db.Integer, db.ForeignKey("activity.id")) 
+)
+
 class Place (db.Model):
   __tablename__="place"
   id=db.Column(db.Integer, primary_key=True, autoincrement = True)
   name = db.Column(db.String, nullable = False)
   description = db.Column (db.String, nullable = False)
+  category=db.relationship("Category", secondary = place_association_table, back_populates=True)
   activities = db.relationship ("Activity", cascade="delete")
   ratings = db.relationship ("PlaceReview", cascade= "delete")
   comments = db.relationship ("PlaceReview", cascade ="delete")
@@ -26,6 +39,7 @@ class Place (db.Model):
       "id": self.id, 
       "name": self.name, 
       "description": self.description, 
+      "category": [c.simple_serialize() for c in self.category],
       "activities": [a.simple_serialize() for a in self.activities], 
       "ratings": [r.simple_serialize() for r in self.ratings], 
       "comments": [c.simple_serialize() for c in self.comments] 
@@ -46,8 +60,9 @@ class Activity (db.Model):
   id=db.Column(db.Integer, primary_key = True, autoincrement = True)
   name=db.Column(db.String, nullable=False)
   description=db.Column(db.String, nullable=False)
-  place_id = db.Column(db.String, db.ForeignKey("place.id"), nullable=True)
+  category=db.relationship("Category", secondary = activity_association_table, back_populates=True)
   completed = db.Column(db.Boolean, nullable =True)
+  place_id = db.Column(db.String, db.ForeignKey("place.id"), nullable=True)
   ratings = db.relationship ("ActivityReview", cascade= "delete")
   comments = db.relationship ("ActivityReview", cascade ="delete")
 
@@ -66,7 +81,8 @@ class Activity (db.Model):
     return {
       "id": self.id, 
       "name": self.name, 
-      "description": self.description, 
+      "description": self.description,
+      "category": [c.simple_serialize() for c in self.category], 
       "complete": self.completed,
       "place": (Place.query.filter_by(id=self.place_id)).simple_serialize(), 
       "ratings": [r.simple_serialize() for r in self.ratings], 
@@ -158,6 +174,30 @@ class ActivityReview(db.Model):
       "username": self.username, 
       "rating": self.rating, 
       "comment": self.comment
+    }
+
+class Category(db.Model):
+  __tablename__="category"
+  id=db.Column(db.Integer, primary_key=True, autoincrement=True)
+  name=db.Column(db.String, nullable=False)
+  activities=db.relationship("Activity", secondary=activity_association_table, back_populates=True)
+  activities=db.relationship("Place", secondary=place_association_table, back_populates=True)
+
+  def __init__ (self, **kwargs):
+    self.name=kwargs.get("name", "")
+  
+  def serialize (self):
+    return {
+      "id": self.id, 
+      "name": self.name,
+      "places": [p.serialize() for p in self.places],
+      "activities": [a.serialize() for a in self.activities]     
+    }
+
+  def simple_serlialize(self):
+    return {
+      "id": self.id, 
+      "name": self.name, 
     }
 
 
