@@ -101,7 +101,7 @@ class Activity (db.Model):
     }
 
 class PlaceReview(db.Model):
-  __tablename__="review"
+  __tablename__="place_review"
   id=db.Column(db.Integer, primary_key =True, autoincrement = True)
   username=db.Column(db.String, nullable=False)
   rating = db.Column(db.Integer, nullable=False)
@@ -139,7 +139,7 @@ class PlaceReview(db.Model):
     }
 
 class ActivityReview(db.Model):
-  __tablename__="review"
+  __tablename__="activity_review"
   id=db.Column(db.Integer, primary_key =True, autoincrement = True)
   username=db.Column(db.String, nullable=False)
   rating = db.Column(db.Integer, nullable=False)

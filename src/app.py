@@ -1,7 +1,7 @@
 from flask import Flask
 import json
 from flask import request
-from db import db, Place, Activity, Review
+from db import db, Place, Activity
 import os
 
 
