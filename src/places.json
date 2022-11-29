@@ -1,0 +1,86 @@
+{
+  "0": {
+    "name": "Cayuga Chamber Orchestra",
+    "description": "The Cayuga Chamber Orchestra is composed of local professional musicians who give a number of performances throughout the season. Concerts and events are held at various locations in Ithaca and sometimes feature internationally renowned soloists."
+  },
+  "1": {
+    "name": "Community School of Music and Arts (CSMA)",
+    "description": "CSMA is Ithaca’s downtown multi-arts center. Its historic location is a vibrant hub for instruction, production, and consumption of visual and performing arts."
+  },
+  "2": {
+    "name": "The Hangar Theatre",
+    "description": "The Hangar Theatre produces five shows during its summer season, including full-scale musicals, comedies, dramas, and classics. Other smaller productions for families and younger audiences occur year round. The theater also offers workshops and programs for both children and adults"
+  },
+  "3": {
+    "name": "The Kitchen Theatre Company",
+    "description": "The Kitchen Theatre Company produces classical and contemporary plays and musicals. Its intimate venue seats only 99 patrons. The theater has strong ties to the Ithaca community and encourages the celebration of culture and the arts, especially in young people."
+  },
+  "4": {
+    "name": "Cayuga Nature Center",
+    "description": "The Cayuga Nature Center offers five miles of nature trails for walking, live animals, natural history exhibits, a butterfly garden, and the Treetops Treehouse—fun for all ages."
+  },
+  "5": {
+    "name": "The Cayuga Waterfront Trail",
+    "description": "The trail is a multi-use, paved trail beginning at Ithaca’s Cass Park. Trail visitors can see views of the Cayuga Lake inlet, the hills of Ithaca, and the community, and take advantage of the park’s recreational space."
+  },
+  "6": {
+    "name": "Greek Peak Mountain Resort",
+    "description": "Greek Peak is located 18 miles from Ithaca in Cortland, New York. It is a family-oriented ski resort with 32 trails of varied difficulty. The resort is open year-round and includes Hope Lake Lodge, the Waterfalls Spa, and Cascades Indoor Waterpark. Greek Peak offers accommodations and programs for the whole family"
+  },
+  "7": {
+    "name": "Taughannock Falls State Park",
+    "description": "Taughannock Park features gorges, cliffs, and waterfalls. The main waterfall has a 215-foot drop, making it 33 feet taller than Niagara Falls. Visitors can walk the 3/4-mile trail to view the falls. The park also offers camping, picnic areas, swimming, and fishing, as well as ice-skating, sledding, and cross-country skiing in the winter."
+  },
+  "8": {
+    "name": "The History Center",
+    "description": "The History Center is a place to learn how the local community grew from early Native American settlements, through the establishment of Cornell University and Ithaca College, to the building of the downtown Commons, and more."
+  },
+  "9": {
+    "name": "The Museum of the Earth",
+    "description": "The museum is part of the Paleontological Research Institution (PRI). Museum visitors can explore its many fossil collections and exhibits to reach a better understanding of the importance of Earth science. Cornell and the PRI work closely together to help fulfill Cornell’s land-grant mission of service. The museum’s collections and staff are resources for Cornell undergraduates working on independent research."
+  },
+  "10": {
+    "name": "Sagan Planet Walk",
+    "description": "A 1:5 billion scale model (3/4 mile long) of the solar system, built in 1997 as a memorial to Ithaca resident and astronomer Carl Sagan. Begin at the Sun station in downtown Ithaca Commons, and follow the planets to Pluto at the Science Center. The last stop in the exhibit, Alpha Centauri, is located at the ‘Imiloa Astronomy Center at the University of Hawaii, Hilo, making this the largest exhibition in the world!"
+  },
+  "11": {
+    "name": "The Sciencenter",
+    "description": "The Sciencenter is a hands-on science museum in Ithaca. Through interaction, the Sciencenter’s exhibits teach children and adults about the solar system, animals, nature, music, and more. The museum features an outdoor science park and offers several programs throughout the year."
+  },
+  "12": {
+    "name": "Cayuga Wine Trail",
+    "description": "The Cayuga Wine Trail includes 16 family owned and operated boutique wineries along Cayuga Lake. This trail was the first organized and is the longest running wine trail in the United States. Winery visitors can sample award-winning wines while experiencing the beauty of the Finger Lakes region. Information on events, winery details, guided tours, maps, and accommodations is available online."
+  },
+  "13": {
+    "name": "The Greater Ithaca Art Trail",
+    "description": "The Art Trail is part of the larger, rich cultural landscape of Upstate New York. Fifty-three studios are open simultaneously two weekends a year and are open year-round by appointment. You’ll find painters, photographers, sculptors, printmakers, ceramic artists, furniture designers, jewelers, and glass artists."
+  },
+  "14": {
+    "name": "Dewitt Mall",
+    "description": "Located in downtown Ithaca, the Dewitt Mall features unique, locally owned specialty shops, wellness studios, galleries, and great dining, including the famous Moosewood restaurant."
+  },
+  "15": {
+    "name": "Shop Downtown Ithaca",
+    "description": "Explore hundreds of independent specialty shops and boutiques along with more than a dozen art galleries. The Ithaca Commons - a unique pedestrian center lined with historic architectural facades - is the centerpiece of Ithaca’s engaging social and civic life. Just a short stroll away is the Dewitt Mall (see above) and Press Bay Alley, a series of micro-retail spaces that feature local shops, cafes, and ice cream."
+  },
+  "16": {
+    "name": "Ithaca Farmer’s Market",
+    "description": "The Ithaca Farmer’s Market features 150 local vendors. Agricultural vendors offer locally grown and produced fruits, vegetables, meats, and dairy products. Food vendors contribute fresh baked goods, jellies, and sauces, and skilled craftspeople sell handmade items. Visit the Farmer’s Market website for specific locations and hours."
+  },
+  "17": {
+    "name": "Shops at Ithaca Mall",
+    "description": "The Shops at Ithaca Mall is located in Lansing, New York. It is an enclosed shopping mall with a range of national chain stores and a food court. Planet Fitness and Regal Cinemas are also part of The Shops at Ithaca Mall."
+  },
+  "18": {
+    "name": "Triphammer Marketplace",
+    "description": "A relaxing hometown atmosphere with over 20 shops, eateries, and services, conveniently located on several bus routes."
+  },
+  "19": {
+    "name": "The Tompkins County Public Library",
+    "description": "The public library is a place to find a world of information. At the library you may connect to special databases, search the library catalog for CDs, DVDs, videos, or your favorite author. Explore the internet or simply sit back and read. Enjoy programming for all ages, including story telling, music on Sundays, book discussion groups, and author readings."
+  },
+  "20": {
+    "name": "Ithaca Youth Bureau",
+    "description": "A public multi-service agency that provides a variety of recreation and youth development programs, including stay-and-play, after school, academic support, job and skill training, lessons/mentoring, sports, summer camps, and more."
+  }
+}
