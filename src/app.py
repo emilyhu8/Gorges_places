@@ -134,6 +134,24 @@ def delete_activity(activity_id):
     db.session.commit()
     return success_response(activity.serialize())
 
+@app.route("/api/activity/<int:activity_id>/", methods=["POST"])
+def complete_activity(activity_id):
+    """
+    Endpoint for deleting a specific activity by id
+    """
+    activity=Activity.query.filter_by(id=activity_id).first()
+    if activity is None:
+        return failure_response("Activity is not found")
+    name=activity.name
+    description=activity.description
+    place_id=activity.place_id
+    db.session.delete(activity)
+    new_activity= Activity(name=name, description=description, completed= True, place_id=place_id)
+    db.session.delete(activity)
+    db.session.add(new_activity)
+    db.session.commit()
+    return success_response(activity.serialize())
+
 @app.route("/api/places/<int:place_id>/review/")
 def get_reviews(place_id):
     """
