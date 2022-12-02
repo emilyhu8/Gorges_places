@@ -1,0 +1,6 @@
+version: '3'
+services:
+  cms:
+    image: exh2/gorges
+    ports:
+      - 8008:8008

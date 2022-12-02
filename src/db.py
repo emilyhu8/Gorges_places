@@ -138,6 +138,39 @@ class PlaceReview(db.Model):
       "rating": self.rating, 
     }
 
+"""
+extra class for front end to implement since the backend is too complex right now
+"""
+
+class PlaceSimple (db.Model):
+  __tablename__="place_simple"
+  id=db.Column(db.Integer, primary_key=True, autoincrement = True)
+  name = db.Column(db.String, nullable = False)
+  description = db.Column (db.String, nullable = False)
+  category=db.Column(db.String, nullable=False)
+  activity = db.Column (db.String, nullable=True)
+
+  def __init__ (self, **kwargs):
+    """
+    Creates a Place object
+    """
+    self.name = kwargs.get("name", "")
+    self.description = kwargs.get ("description", "")
+    self.category=kwargs.get("category", "")
+    self.activity=kwargs.get("activity", "")
+  
+  def serialize (self):
+    """
+    Serializes a Place object
+    """
+    return {
+      "id": self.id, 
+      "name": self.name, 
+      "description": self.description, 
+      "category": self.category,
+      "activity": self.activity, 
+    }
+
 
 
 

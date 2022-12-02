@@ -1,7 +1,7 @@
 from flask import Flask
 import json
 from flask import request
-from db import db, Place, Activity, PlaceReview, Category
+from db import db, Place, Activity, PlaceReview, Category, PlaceSimple
 import os
 
 
@@ -180,6 +180,30 @@ def create_review(place_id):
     db.session.add(new_review)
     db.session.commit()
     return success_response (new_review.serialize(), 201)
+
+@app.route("/api/places/simple/")
+def get_places_simple():
+    """
+    Endpoint for getting all places
+    """
+    places = [place.serialize() for place in PlaceSimple.query.all()]
+    return success_response({"places": places})
+
+@app.route("/api/places/simple/", methods=["POST"])
+def create_place_simple():
+    """
+    Endpoint to create a place
+    """
+    body=json.loads(request.data)
+    name=body.get("name")
+    description = body.get("description")
+    category= body.get("category")
+    activity = body.get("activity")
+    new_place_simple=PlaceSimple(name=name, description=description, category=category, activity=activity)
+    db.session.add(new_place_simple)
+    db.session.commit()
+    return success_response (new_place_simple.serialize(), 201)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8008, debug=True)
