@@ -23,6 +23,7 @@ def success_response(data, code=200):
 def failure_response(message, code=404):
     return json.dumps({"error": message}), code
 
+@app.route("/")
 @app.route("/api/categories/")
 def get_categories():
     """
